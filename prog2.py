@@ -5,6 +5,7 @@ import sys
 def compute_disparity(left_img_path, right_img_path, scale_factor, output_path):
     left_img = cv2.imread(left_img_path, cv2.IMREAD_GRAYSCALE)
     right_img = cv2.imread(right_img_path, cv2.IMREAD_GRAYSCALE)
+    scale_factor = max(scale_factor, 5)
 
     if left_img is None or right_img is None:
         print("Error loading images")

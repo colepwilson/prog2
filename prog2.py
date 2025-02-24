@@ -13,9 +13,9 @@ def compute_disparity(left_img_path, right_img_path, scale_factor, output_path):
     height, width = left_img.shape
     disparity_map = np.zeros((height, width), dtype=np.uint8)
 
-    max_disparity = 64
+    max_disparity = 50
 
-    block_size = 5
+    block_size = 3
     half_block = block_size // 2
 
     for y in range(half_block, height - half_block):

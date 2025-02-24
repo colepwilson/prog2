@@ -24,11 +24,14 @@ def compute_disparity(left_img_path, right_img_path, scale_factor, output_path):
             best_disparity = 0
 
             for d in range(max_disparity):
-                if x - d < 0:
+                if x - d < half_block:
                     continue
 
-                left_patch = left_img[y - half_block:y + half_block + 1, x - half_block:x + half_block + 1]
-                right_patch = right_img[y - half_block:y + half_block + 1, x - half_block - d:x + half_block + 1 - d]
+                left_patch = left_img[y-half_block:y+half_block+1, x-half_block:x+half_block+1]
+                right_patch = right_img[y-half_block:y+half_block+1, x-half_block-d:x+half_block+1-d]
+
+                if right_patch.shape != left_patch.shape:
+                    continue
 
                 ssd = np.sum((left_patch - right_patch) ** 2)
 
